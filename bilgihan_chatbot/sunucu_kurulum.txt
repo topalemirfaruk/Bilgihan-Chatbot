@@ -1,0 +1,116 @@
+SUNUCU KURULUM ADIMLARI
+====================
+
+1. Sistem Güncellemesi
+---------------------
+sudo apt update
+sudo apt upgrade -y
+
+2. Python ve Gerekli Araçların Kurulumu
+-------------------------------------
+sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools python3-venv nginx -y
+
+3. Proje Klasörü Oluşturma
+-------------------------
+mkdir ~/bilgihan_chatbot
+cd ~/bilgihan_chatbot
+
+4. Python Sanal Ortam Oluşturma
+-----------------------------
+python3 -m venv venv
+source venv/bin/activate
+
+5. Proje Dosyalarını Yükleme
+--------------------------
+- Tüm proje dosyalarını FTP veya Git ile sunucudaki ~/bilgihan_chatbot klasörüne yükleyin
+
+6. Gerekli Paketlerin Kurulumu
+----------------------------
+pip install -r requirements.txt
+pip install gunicorn
+
+7. .env Dosyasını Oluşturma
+-------------------------
+nano .env
+
+İçeriği:
+GEMINI_API_KEY=your_api_key
+GOOGLE_CLIENT_ID=your_client_id
+GOOGLE_CLIENT_SECRET=your_client_secret
+
+8. Gunicorn Servis Dosyası Oluşturma
+---------------------------------
+sudo nano /etc/systemd/system/bilgihan.service
+
+İçeriği:
+[Unit]
+Description=Bilgihan Chatbot
+After=network.target
+
+[Service]
+User=your_username
+Group=www-data
+WorkingDirectory=/home/your_username/bilgihan_chatbot
+Environment="PATH=/home/your_username/bilgihan_chatbot/venv/bin"
+ExecStart=/home/your_username/bilgihan_chatbot/venv/bin/gunicorn --workers 3 --bind unix:bilgihan.sock -m 007 bilgihan_chatbot:app
+
+[Install]
+WantedBy=multi-user.target
+
+9. Nginx Yapılandırması
+---------------------
+sudo nano /etc/nginx/sites-available/bilgihan
+
+İçeriği:
+server {
+    listen 80;
+    server_name your_domain.com;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/your_username/bilgihan_chatbot/bilgihan.sock;
+    }
+}
+
+10. Nginx Sitesini Etkinleştirme
+------------------------------
+sudo ln -s /etc/nginx/sites-available/bilgihan /etc/nginx/sites-enabled
+sudo nginx -t
+sudo systemctl restart nginx
+
+11. Gunicorn Servisini Başlatma
+-----------------------------
+sudo systemctl start bilgihan
+sudo systemctl enable bilgihan
+
+12. Firewall Ayarları (Gerekirse)
+------------------------------
+sudo ufw allow 'Nginx Full'
+sudo ufw enable
+
+13. SSL Sertifikası (İsteğe Bağlı)
+-------------------------------
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d your_domain.com
+
+NOTLAR:
+-------
+- your_username: Sunucudaki kullanıcı adınız
+- your_domain.com: Sitenizin domain adresi
+- your_api_key: Gemini API anahtarınız
+- your_client_id: Google Client ID
+- your_client_secret: Google Client Secret
+
+Hata Kontrolü:
+-------------
+- Logları kontrol etmek için: sudo journalctl -u bilgihan
+- Nginx logları: sudo tail -f /var/log/nginx/error.log
+- Servis durumu: sudo systemctl status bilgihan
+
+Güvenlik Önerileri:
+-----------------
+1. Güçlü bir şifre kullanın
+2. Regular sistem güncellemelerini yapın
+3. UFW firewall'ı aktif tutun
+4. Hassas bilgileri .env dosyasında saklayın
+5. Düzenli yedek alın

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol - BilgiBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="BilgiBot Logo" class="logo-img">
+                </div>
+                <h1>BilgiBot'a Katılın</h1>
+                <p>Yeni bir hesap oluşturun</p>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="auth-form">
+                <form method="POST" action="{{ url_for('register') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.username(class="form-control", placeholder="Kullanıcı Adı") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email(class="form-control", placeholder="E-posta") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password(class="form-control", placeholder="Şifre") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-primary w-100", value="Kayıt Ol") }}
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p>Zaten hesabınız var mı? <a href="{{ url_for('login') }}">Giriş Yapın</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

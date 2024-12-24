@@ -1,0 +1,95 @@
+UBUNTU VDS SUNUCU KURULUM ADIMLARI
+==============================
+
+1. Sunucuya Bağlanma
+------------------
+- Sunucunuza SSH ile bağlanın:
+  ssh kullanici_adi@sunucu_ip
+
+2. Sistem Güncellemesi
+-------------------
+sudo apt update
+sudo apt upgrade -y
+
+3. Python ve Gerekli Paketlerin Kurulumu
+------------------------------------
+sudo apt install python3-pip python3-dev nginx -y
+
+4. Proje Klasörü Oluşturma
+------------------------
+mkdir /home/kullanici_adi/bilgihan_chatbot
+cd /home/kullanici_adi/bilgihan_chatbot
+
+5. Proje Dosyalarını Yükleme
+-------------------------
+- FileZilla ile sunucuya bağlanın
+- Tüm proje dosyalarını oluşturduğunuz klasöre yükleyin
+  (bilgihan_chatbot.py, requirements.txt, .env, templates klasörü, static klasörü)
+
+6. Gerekli Python Paketlerini Kurma
+--------------------------------
+cd /home/kullanici_adi/bilgihan_chatbot
+pip3 install -r requirements.txt
+pip3 install gunicorn
+
+7. .env Dosyası Ayarları
+---------------------
+- .env dosyasının içeriğini kontrol edin:
+  GEMINI_API_KEY=your_api_key
+  GOOGLE_CLIENT_ID=your_client_id
+  GOOGLE_CLIENT_SECRET=your_client_secret
+
+8. Uygulamayı Test Etme
+--------------------
+python3 bilgihan_chatbot.py
+
+9. Gunicorn ile Çalıştırma
+------------------------
+gunicorn --bind 0.0.0.0:8000 bilgihan_chatbot:app --daemon
+
+10. Nginx Ayarları
+---------------
+sudo nano /etc/nginx/sites-available/bilgihan
+
+server {
+    listen 80;
+    server_name sunucu_ip_adresi;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/bilgihan /etc/nginx/sites-enabled
+sudo nginx -t
+sudo systemctl restart nginx
+
+11. Firewall Ayarları
+------------------
+sudo ufw allow 80
+sudo ufw allow 'OpenSSH'
+sudo ufw enable
+
+HATA KONTROL LİSTESİ:
+-------------------
+1. Nginx durumunu kontrol etme:
+   sudo systemctl status nginx
+
+2. Gunicorn çalışıyor mu kontrol etme:
+   ps aux | grep gunicorn
+
+3. Port kontrolü:
+   sudo netstat -tulpn | grep LISTEN
+
+4. Log dosyalarını kontrol etme:
+   sudo tail -f /var/log/nginx/error.log
+
+NOTLAR:
+------
+- kullanici_adi: Sunucudaki kullanıcı adınızı yazın
+- sunucu_ip_adresi: Sunucunuzun IP adresini yazın
+- Eğer domain bağlayacaksanız, Nginx ayarlarındaki server_name kısmına domain adresinizi yazın
+- Sunucuda 80 portunun açık olduğundan emin olun
+- Tüm dosyaların doğru izinlere sahip olduğundan emin olun

@@ -1,0 +1,125 @@
+T.C.
+[ÜNİVERSİTE ADI]
+BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+
+YAPAY ZEKA DESTEKLİ SAĞLIK CHATBOT PROJESİ
+BİLGİHAN
+
+[ÖĞRENCİ ADI SOYADI]
+[ÖĞRENCİ NUMARASI]
+
+YAZILIM MÜHENDİSLİĞİ
+FİNAL PROJESİ
+
+DANIŞMAN
+[DANIŞMAN HOCANİN ADI SOYADI]
+
+[DÖNEM] - 2024
+
+İÇİNDEKİLER
+
+ÖZET ...................................................... i
+ABSTRACT ................................................. ii
+1. GİRİŞ ................................................. 1
+   1.1. Projenin Amacı ................................... 1
+   1.2. Projenin Kapsamı ................................. 2
+   1.3. Projenin Önemi ................................... 2
+
+2. KULLANILAN TEKNOLOJİLER ............................... 3
+   2.1. Python ve Flask Framework ......................... 3
+   2.2. SQLite Veritabanı ................................ 3
+   2.3. Google Gemini AI API ............................. 3
+   2.4. Frontend Teknolojileri ........................... 4
+
+3. YAZILIM GELİŞTİRME SÜRECİ ............................ 5
+   3.1. Gereksinim Analizi ............................... 5
+   3.2. Tasarım .......................................... 6
+   3.3. Kodlama .......................................... 7
+   3.4. Test ............................................. 8
+
+4. UYGULAMA KODLARI ..................................... 9
+
+4.1. Backend (Python - Flask) Kodları .................... 9
+
+bilgihan_chatbot.py:
+```python
+# Gerekli kütüphaneleri içe aktar
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+import json
+from datetime import datetime
+
+[... bilgihan_chatbot.py'nin geri kalanı ...]
+```
+
+4.2. Frontend Kodları .................................. 25
+
+4.2.1. HTML Kodları:
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilgihan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+[... index.html'in geri kalanı ...]
+```
+
+4.2.2. JavaScript Kodları:
+```javascript
+// Global değişkenler
+let currentChatId = null;
+let isAuthenticated = false;
+let selectedCategory = null;
+
+[... script.js'in geri kalanı ...]
+```
+
+4.2.3. CSS Kodları:
+```css
+/* CSS Kodları */
+:root {
+    /* Marka Renkleri */
+    --brand-50: #F0F7FF;
+    --brand-100: #E0EFFE;
+    [... style.css'in geri kalanı ...]
+}
+```
+
+5. VERİTABANI YAPISI ................................... 45
+   5.1. Kullanıcı Tablosu .............................. 45
+   5.2. Sohbet Tablosu ................................. 46
+   5.3. Mesaj Tablosu .................................. 46
+   5.4. Kaydedilen Yanıtlar Tablosu .................... 47
+
+6. API ENTEGRASYONU .................................... 48
+   6.1. Gemini AI API Kullanımı ........................ 48
+   6.2. API Güvenliği .................................. 49
+
+7. GÜVENLİK ÖNLEMLERİ ................................. 50
+   7.1. Kullanıcı Doğrulama ............................ 50
+   7.2. Veri Güvenliği ................................. 51
+
+8. TEST SENARYOLARI .................................... 52
+   8.1. Birim Testleri ................................. 52
+   8.2. Entegrasyon Testleri ........................... 53
+   8.3. Kullanıcı Arayüzü Testleri ..................... 54
+
+9. SONUÇ VE ÖNERİLER .................................. 55
+   9.1. Projenin Başarısı .............................. 55
+   9.2. Karşılaşılan Zorluklar ......................... 56
+   9.3. Gelecek Geliştirmeler .......................... 57
+
+KAYNAKÇA .............................................. 58
+
+EKLER ................................................. 59

@@ -1,0 +1,1492 @@
+/* CSS Kodları*/
+:root {
+    /* Marka Renkleri (Site Renkleri) */
+    --brand-50: #F0F7FF;
+    --brand-100: #E0EFFE;
+    --brand-200: #BAE0FD;
+    --brand-300: #7CC5FB;
+    --brand-400: #36A9F8;
+    --brand-500: #0C90EA;
+    --brand-600: #0070CC;
+    --brand-700: #005396;
+    --brand-800: #003A6B;
+    --brand-900: #002845;
+
+    /* Nötr Renkler */
+    --gray-50: #F8FAFC;
+    --gray-100: #EEF2F6;
+    --gray-200: #E3E8EF;
+    --gray-300: #CDD5DF;
+    --gray-400: #9AA4B2;
+    --gray-500: #697586;
+    --gray-600: #4B5565;
+    --gray-700: #364152;
+    --gray-800: #202939;
+    --gray-900: #121926;
+
+    /* Anlamsal Renkler */
+    --success-light: #ECFDF3;
+    --success: #12B76A;
+    --warning-light: #FFFAEB;
+    --warning: #F79009;
+    --error-light: #FEF3F2;
+    --error: #F04438;
+    --info-light: #F0F9FF;
+    --info: #06AED4;
+
+    /* Arkaplan Renkleri */
+    --bg-primary: var(--gray-50);
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: var(--brand-50);
+
+    /* Metin Renkleri */
+    --text-primary: var(--gray-900);
+    --text-secondary: var(--gray-600);
+    --text-tertiary: var(--gray-400);
+
+    /* Kenarlık Renkleri */
+    --border-light: var(--gray-200);
+    --border-medium: var(--gray-300);
+
+    /* Gölge Değerleri */
+    --shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    --shadow-sm: 0px 2px 4px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0px 4px 8px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0px 8px 16px rgba(16, 24, 40, 0.12);
+    --shadow-xl: 0px 20px 24px rgba(16, 24, 40, 0.16);
+
+    /* Boşluk Değerleri */
+    --space-2xs: 0.25rem;  /* 4px */
+    --space-xs: 0.5rem;    /* 8px */
+    --space-sm: 0.75rem;   /* 12px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.25rem;   /* 20px */
+    --space-xl: 1.5rem;    /* 24px */
+    --space-2xl: 2rem;     /* 32px */
+    --space-3xl: 2.5rem;   /* 40px */
+
+    /* Kenar Yuvarlaklığı */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+}
+
+/* Temel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    height: 100%;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    height: 100%;
+}
+
+/* Uygulama Düzeni */
+.app-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 100vh;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+/* Mobil Navigasyon */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 0 var(--space-md);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-light);
+    z-index: 100;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-logo img, .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.mobile-logo .logo-img {
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-weight: 600;
+    color: var(--brand-600);
+}
+
+.mobile-nav button {
+    background: none;
+    border: none;
+    padding: var(--space-xs);
+    color: var(--gray-600);
+    cursor: pointer;
+}
+
+/* Kenar Çubuğu Stilleri */
+.sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--brand-600);
+}
+
+.close-sidebar {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: var(--space-xs);
+}
+
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+}
+
+/* Kullanıcı Profili */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--brand-100);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-600);
+}
+
+.user-info h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.user-info p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Navigasyon Menüsü */
+.sidebar-nav {
+    flex: 1;
+}
+
+.new-chat-btn {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--brand-600);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xl);
+    transition: background-color 0.2s ease;
+}
+
+.new-chat-btn:hover {
+    background: var(--brand-700);
+}
+
+.nav-section {
+    margin-bottom: var(--space-xl);
+}
+
+.nav-section h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.nav-section ul {
+    list-style: none;
+}
+
+.nav-section ul li {
+    margin-bottom: var(--space-xs);
+}
+
+.nav-section a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.nav-section a:hover {
+    background: var(--gray-100);
+    color: var(--text-primary);
+}
+
+.nav-section a.active {
+    background: var(--brand-50);
+    color: var(--brand-600);
+}
+
+.emergency-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+}
+
+.emergency-list i {
+    color: var(--brand-500);
+}
+
+.emergency-list div {
+    display: flex;
+    flex-direction: column;
+}
+
+.emergency-list strong {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.emergency-list span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Acil Durum İletişim Bilgileri */
+.emergency-contacts {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.emergency-contacts h3 {
+    color: #333333;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.contact-grid {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card h4 {
+    color: #333333;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.contact-card p {
+    color: #666666;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+}
+
+/* Hızlı Erişim Bölümü */
+.quick-access h4 {
+    color: #333333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.quick-access a {
+    color: #333333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.quick-access a:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Kategori Düğmeleri */
+.category-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.category-btn:hover {
+    background: #ffffff;
+}
+
+.category-btn.active {
+    background: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-btn i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.category-btn span {
+    font-size: 1rem;
+    color: #333333;
+}
+
+/* Kategori İkon Rengi */
+.category-btn[data-category="health"] i,
+.contact-card.health i {
+    color: #e74c3c;
+}
+
+.category-btn[data-category="science"] i,
+.contact-card.science i {
+    color: #27ae60;
+}
+
+.category-btn[data-category="technology"] i,
+.contact-card.technology i {
+    color: #8e44ad;
+}
+
+.category-btn[data-category="ai"] i,
+.contact-card.ai i {
+    color: #f39c12;
+}
+
+/* Kenar Çubuğu Başlığı */
+.sidebar-header h2 {
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Hoş Geldiniz Ekranı Güncelleme */
+.welcome-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #f8f9fa;
+}
+
+.welcome-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.welcome-content h1 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.welcome-content p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Sohbet Geçmişi Stilleri */
+.chat-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 32px;
+    color: #666;
+    font-size: 16px;
+}
+
+/* Ana İçerik */
+.main-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+}
+
+/* Sohbet Arayüzü */
+.chat-interface {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: var(--space-xl);
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideIn 0.3s ease forwards;
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--brand-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-600);
+    flex-shrink: 0;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    font-size: 0.9375rem;
+}
+
+.message.bot .message-content {
+    background: var(--chat-bot-bg);
+    color: var(--text-color);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.message.user .message-content {
+    background: var(--chat-user-bg);
+    color: white;
+}
+
+/* Sohbet Girişi */
+.chat-input {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.message-form {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--brand-300);
+}
+
+textarea {
+    width: 100%;
+    padding: var(--space-md) var(--space-xl) var(--space-md) var(--space-md);
+    border: none;
+    background: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--text-color);
+    outline: none;
+}
+
+textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+.mic-button {
+    position: absolute;
+    right: var(--space-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: var(--space-xs);
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.mic-button:hover {
+    color: var(--brand-500);
+}
+
+.send-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--brand-500);
+    border: none;
+    border-radius: var(--radius-lg);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.send-button:hover {
+    background: var(--brand-600);
+}
+
+.send-button:disabled {
+    background: var(--gray-300);
+    cursor: not-allowed;
+}
+
+.send-button i {
+    font-size: 1rem;
+}
+
+.send-button .loading-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+.send-button.loading i {
+    display: none;
+}
+
+.send-button.loading .loading-spinner {
+    display: block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Bildirim Kutusu */
+.toast-container {
+    position: fixed;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--gray-900);
+    color: white;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    box-shadow: var(--box-shadow);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* Uyarı ve Hata Mesajları */
+.alert {
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: var(--success-light);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.alert-error {
+    background-color: var(--error-light);
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Form Doğrulama Stilleri */
+.form-control:invalid {
+    border-color: var(--error);
+}
+
+.form-control:focus:invalid {
+    box-shadow: 0 0 0 4px var(--error-light);
+}
+
+.form-control.error {
+    border-color: var(--error);
+    background-color: var(--error-light);
+}
+
+/* Kaydedilmiş Yanıtlar Stilleri */
+.saved-responses-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.saved-response {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+.saved-response:hover {
+    background-color: #e9ecef;
+}
+
+.saved-response-content {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #495057;
+}
+
+.delete-response-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.delete-response-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.save-response-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+    margin-left: 0.5rem;
+}
+
+.save-response-btn:hover {
+    color: #0d6efd;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.message-text {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.bot-message .message-text {
+    background-color: #e3f2fd;
+}
+
+.user-message .message-text {
+    background-color: #f8f9fa;
+}
+
+/* Tema Değiştirme Düğmesi */
+.theme-toggle {
+    padding: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--secondary-color);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+}
+
+/* Animasyonlar */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Cep Telefonu Düzeni */
+@media (max-width: 1024px) {
+    .app-wrapper {
+        grid-template-columns: 260px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: flex;
+    }
+
+    .app-wrapper {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 300px;
+        z-index: 200;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .close-sidebar {
+        display: block;
+    }
+
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+
+    .feature-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .message {
+        margin-bottom: var(--space-md);
+    }
+
+    .message-content {
+        max-width: 85%;
+    }
+
+    .chat-input {
+        padding: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-screen {
+        padding: var(--space-lg);
+    }
+
+    .welcome-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .welcome-content > p {
+        font-size: 1rem;
+    }
+
+    .suggestion-chips button {
+        width: 100%;
+    }
+
+    .message-content {
+        max-width: 90%;
+    }
+}
+
+/* Giriş Düğmeleri */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding: 1rem;
+}
+
+.auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.auth-btn.login {
+    background: var(--brand-600);
+    color: white;
+}
+
+.auth-btn.register {
+    background: var(--gray-100);
+    color: var(--brand-600);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-btn.login:hover {
+    background: var(--brand-700);
+}
+
+.auth-btn.register:hover {
+    background: var(--gray-200);
+}
+
+/* Giriş Sayfaları */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--brand-50) 100%);
+    padding: 2rem;
+}
+
+.auth-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header .logo {
+    font-size: 2rem;
+    color: var(--brand-600);
+    margin-bottom: 1rem;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input {
+    padding: 0.875rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--brand-300);
+    box-shadow: 0 0 0 4px var(--brand-50);
+    outline: none;
+}
+
+.auth-submit {
+    background: var(--brand-600);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.auth-submit:hover {
+    background: var(--brand-700);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-footer a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.auth-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.auth-divider:before,
+.auth-divider:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.auth-divider:before {
+    left: 0;
+}
+
+.auth-divider:after {
+    right: 0;
+}
+
+.auth-divider span {
+    background-color: white;
+    padding: 0 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.social-login {
+    padding: 0 20px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 16px;
+    background-color: white;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #3c4043;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-google:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10vh auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Bildirim */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Hoş Geldiniz Ekranı */
+.welcome-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-content h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.welcome-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* Sohbet Arayüzü */
+.chat-interface {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+}
+
+/* Kategori Bölümü Stilleri */
+.category-section {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-section h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.category-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+}
+
+.category-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+}
+
+.category-item i {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.category-item[data-category="health"] i {
+    color: #ff6b6b;
+}
+
+.category-item[data-category="science"] i {
+    color: #51cf66;
+}
+
+.category-item[data-category="technology"] i {
+    color: #cc5de8;
+}
+
+.category-item[data-category="ai"] i {
+    color: #ffd43b;
+}
+
+.category-item span {
+    font-size: 0.9rem;
+}
+
+/* Aktif Kategori Rozeti */
+.active-category-badge {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: #2c3e50;
+    z-index: 1000;
+    display: none;
+}
+
+.active-category-badge i {
+    margin-right: 0.5rem;
+}
+
+/* Kategori Seçimi Stilleri */
+.category-selection {
+    text-align: center;
+    padding: 2rem;
+}
+
+.category-selection h2 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.category-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: grid;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.category-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.category-card[data-category="health"] i {
+    color: #ff6b6b;
+}
+
+.category-card[data-category="science"] i {
+    color: #51cf66;
+}
+
+.category-card[data-category="technology"] i {
+    color: #cc5de8;
+}
+
+.category-card[data-category="ai"] i {
+    color: #ffd43b;
+}
+
+.category-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.category-card p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Kategori Düğmeleri */
+.category-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+}
+
+.category-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.category-btn.active {
+    background-color: var(--active-color);
+    color: var(--brand-color);
+}
+
+.category-btn i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.category-btn[data-category="health"] i {
+    color: #ff6b6b;
+}
+
+.category-btn[data-category="science"] i {
+    color: #51cf66;
+}
+
+.category-btn[data-category="technology"] i {
+    color: #cc5de8;
+}
+
+.category-btn[data-category="ai"] i {
+    color: #ffd43b;
+}
+
+.category-btn span {
+    font-size: 0.9rem;
+}

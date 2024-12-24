@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilgihan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Mobil Navigasyon -->
+        <nav class="mobile-nav">
+            <button class="menu-toggle" aria-label="Menüyü Aç">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="mobile-logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Bilgihan Logo" class="logo-img">
+                <span>Bilgihan</span>
+            </div>
+            <button class="mobile-profile" aria-label="Profil">
+                <i class="fas fa-user"></i>
+            </button>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Bilgihan Logo" class="logo-img">
+                </div>
+                <button class="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <!-- User Profile Section -->
+                {% if current_user.is_authenticated %}
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>{{ current_user.username }}</h3>
+                        <p>Personal Account</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Navigation Menu -->
+                <nav class="sidebar-nav">
+                    <button class="new-chat-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Yeni Görüşme</span>
+                    </button>
+
+                    <div class="nav-section">
+                        <h4>Hızlı Erişim</h4>
+                        <ul>
+                            <li><a href="#" class="chat-history-btn"><i class="fas fa-comments"></i>Sohbet Geçmişi</a></li>
+                            <li><a href="#" class="saved-responses-btn" id="saved-responses-btn">
+                                <i class="fas fa-bookmark"></i>
+                                <span>Kaydedilen Yanıtlar</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Kategoriler</h4>
+                        <ul>
+                            <li><a href="#" class="category-btn" data-category="health"><i class="fas fa-heartbeat"></i>Sağlık</a></li>
+                            <li><a href="#" class="category-btn" data-category="science"><i class="fas fa-flask"></i>Bilim</a></li>
+                            <li><a href="#" class="category-btn" data-category="technology"><i class="fas fa-microchip"></i>Teknoloji</a></li>
+                            <li><a href="#" class="category-btn" data-category="ai"><i class="fas fa-robot"></i>Yapay Zeka</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="emergency-contacts">
+                        <h3>Acil Durum İletişim</h3>
+                        <div class="contact-grid">
+                            <div class="contact-card health">
+                                <i class="fas fa-ambulance"></i>
+                                <h4>Sağlık Acil</h4>
+                                <p>Acil Servis: 112</p>
+                                <p>Sağlık Danışma: 184</p>
+                            </div>
+                            <div class="contact-card science">
+                                <i class="fas fa-microscope"></i>
+                                <h4>Bilimsel Destek</h4>
+                                <p>TÜBİTAK: 444 8 825</p>
+                                <p>Bilim Danışma: 444 4 566</p>
+                            </div>
+                            <div class="contact-card technology">
+                                <i class="fas fa-laptop-code"></i>
+                                <h4>Teknik Destek</h4>
+                                <p>BTK: 0312 294 72 00</p>
+                                <p>Siber Güvenlik: 444 5 444</p>
+                            </div>
+                            <div class="contact-card ai">
+                                <i class="fas fa-brain"></i>
+                                <h4>AI Destek</h4>
+                                <p>AI Yardım: 444 1 444</p>
+                                <p>Teknik Destek: 0850 222 0 222</p>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="sidebar-footer">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('logout') }}" class="auth-btn logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Çıkış Yap</span>
+                        </a>
+                    {% else %}
+                        <div class="auth-buttons">
+                            <a href="/login" class="auth-btn login">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Giriş Yap</span>
+                            </a>
+                            <a href="/register" class="auth-btn register">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Kayıt Ol</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcome-screen">
+                <div class="welcome-content">
+                    <h1>Bilgihan'a Hoş Geldiniz</h1>
+                    <div class="category-selection">
+                        <h2>Sol taraftan soru sormak istediğinz kategoriyi seçerek başlayabilirsiniz.</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-interface" id="chat-interface">
+                <div class="chat-messages" id="messages">
+                    <!-- Messages will be populated here -->
+                </div>
+
+                <div class="chat-input">
+                    <form id="chat-form" class="message-form">
+                        <div class="input-wrapper">
+                            <textarea 
+                                id="user-input" 
+                                placeholder="Sağlık sorunuzu yazın..."
+                                rows="1"
+                                required
+                            ></textarea>
+                            <button type="button" class="mic-button">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button type="submit" class="send-button" id="send-button">
+                            <i class="fas fa-paper-plane"></i>
+                            <div class="loading-spinner"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container">
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <h2>Giriş Yap</h2>
+            <form action="{{ url_for('login') }}" method="POST" class="auth-form">
+                <div class="form-group">
+                    <label for="login-username">Kullanıcı Adı</label>
+                    <input type="text" id="login-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Şifre</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            </form>
+            <button class="modal-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <h2>Kayıt Ol</h2>
+            <form action="{{ url_for('register') }}" method="POST" class="auth-form">
+                <div class="form-group">
+                    <label for="register-username">Kullanıcı Adı</label>
+                    <input type="text" id="register-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">E-posta</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Şifre</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+            </form>
+            <button class="modal-close">&times;</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

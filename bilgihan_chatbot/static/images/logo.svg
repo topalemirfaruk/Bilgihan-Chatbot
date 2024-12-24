@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ana daire -->
+    <circle cx="150" cy="150" r="140" fill="#3498db" />
+    
+    <!-- İç içe geçmiş daireler (bilgi akışını temsil eden) -->
+    <circle cx="150" cy="150" r="100" fill="none" stroke="white" stroke-width="6" />
+    <circle cx="150" cy="150" r="70" fill="none" stroke="white" stroke-width="6" />
+    
+    <!-- Merkezdeki nokta -->
+    <circle cx="150" cy="150" r="20" fill="white" />
+    
+    <!-- Işık efekti -->
+    <path d="M150 40 L150 80 M150 220 L150 260 M40 150 L80 150 M220 150 L260 150" 
+          stroke="white" 
+          stroke-width="6" 
+          stroke-linecap="round" />
+</svg>

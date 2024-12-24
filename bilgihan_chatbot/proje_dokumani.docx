@@ -1,0 +1,171 @@
+# BİLGİHAN CHATBOT PROJESİ DOKÜMANTASYONU
+
+## 1. PROJE GENEL BAKIŞ
+
+Bu proje, Gemini AI API kullanılarak geliştirilmiş çok kategorili bir sohbet botudur. Bot sağlık, bilim, teknoloji ve yapay zeka kategorilerinde kullanıcılara yardımcı olmaktadır.
+
+## 2. PROJE YAPISI
+
+### 2.1 Ana Bileşenler
+
+- Flask Web Uygulaması (Backend)
+- HTML/CSS/JavaScript (Frontend)
+- SQLite Veritabanı
+- Gemini AI API Entegrasyonu
+
+### 2.2 Dosya Yapısı
+
+```
+health_chatbot/
+├── bilgihan_chatbot.py     # Ana uygulama dosyası
+├── requirements.txt        # Bağımlılıklar
+├── .env                   # Ortam değişkenleri
+├── instance/
+│   └── users.db          # SQLite veritabanı
+├── static/
+│   ├── css/
+│   │   └── style.css    # CSS stilleri
+│   ├── js/
+│   │   └── script.js    # JavaScript kodları
+│   └── images/          # Görsel dosyaları
+└── templates/
+    ├── index.html       # Ana sayfa şablonu
+    ├── login.html       # Giriş sayfası
+    └── register.html    # Kayıt sayfası
+```
+
+## 3. BACKEND (bilgihan_chatbot.py)
+
+### 3.1 Veritabanı Modelleri
+
+#### User Modeli
+- Kullanıcı kimlik doğrulama ve profil bilgileri
+- Kullanıcı adı, e-posta ve şifre yönetimi
+
+#### Chat Modeli
+- Sohbet oturumlarının yönetimi
+- Kullanıcı-bot mesajlaşma geçmişi
+
+#### SavedResponse Modeli
+- Kaydedilen bot yanıtlarının saklanması
+- Favori yanıtların yönetimi
+
+### 3.2 API Endpointleri
+
+#### /api/chat
+- POST: Kullanıcı mesajını alır ve bot yanıtı döndürür
+- Kategori bazlı yanıt üretimi
+- Sohbet geçmişi kaydı
+
+#### /api/chat-history
+- GET: Kullanıcının sohbet geçmişini getirir
+- Oturum bazlı filtreleme
+
+#### /api/saved-responses
+- GET: Kaydedilen yanıtları listeler
+- POST: Yeni yanıt kaydeder
+- DELETE: Kaydedilen yanıtı siler
+
+### 3.3 Kategori Yönetimi
+
+Bot dört ana kategoride hizmet vermektedir:
+
+1. Sağlık Kategorisi
+   - Genel sağlık bilgileri
+   - Beslenme ve fitness
+   - İlk yardım bilgileri
+   - Sağlık tavsiyeleri
+
+2. Bilim Kategorisi
+   - Fizik, kimya, biyoloji
+   - Bilimsel araştırmalar
+   - Güncel keşifler
+   - Bilimsel metodoloji
+
+3. Teknoloji Kategorisi
+   - Yazılım ve donanım
+   - İnternet teknolojileri
+   - Siber güvenlik
+   - Yeni teknolojiler
+
+4. Yapay Zeka Kategorisi
+   - AI temelleri
+   - Makine öğrenmesi
+   - AI uygulamaları
+   - AI etiği
+
+## 4. FRONTEND
+
+### 4.1 Ana Sayfa (index.html)
+
+- Kategori seçimi
+- Sohbet arayüzü
+- Yanıt kaydetme
+- Sohbet geçmişi görüntüleme
+
+### 4.2 JavaScript Fonksiyonları (script.js)
+
+- Mesaj gönderimi ve alımı
+- Kategori değiştirme
+- Yanıt kaydetme
+- Sohbet geçmişi yönetimi
+- UI animasyonları
+
+### 4.3 CSS Stilleri (style.css)
+
+- Responsive tasarım
+- Tema renkleri
+- Animasyonlar
+- Bileşen stilleri
+
+## 5. GÜVENLİK ÖZELLİKLERİ
+
+- Kullanıcı kimlik doğrulama
+- Oturum yönetimi
+- API anahtarı güvenliği
+- XSS ve CSRF koruması
+
+## 6. KURULUM VE ÇALIŞTIRMA
+
+1. Gerekli paketlerin kurulumu:
+```bash
+pip install -r requirements.txt
+```
+
+2. .env dosyası yapılandırması:
+```
+GEMINI_API_KEY=your_api_key_here
+SECRET_KEY=your_secret_key_here
+```
+
+3. Veritabanı oluşturma:
+```python
+flask db upgrade
+```
+
+4. Uygulamayı çalıştırma:
+```bash
+python bilgihan_chatbot.py
+```
+
+## 7. ÖNEMLİ NOTLAR
+
+- Bot teşhis koymaz veya ilaç önermez
+- Acil durumlarda 112'yi aramanız önerilir
+- Güvenlik için düzenli olarak şifre değiştirilmelidir
+- Hassas sağlık bilgileri paylaşılmamalıdır
+
+## 8. GELECEK GELİŞTİRMELER
+
+- Sesli asistan entegrasyonu
+- Görüntü analizi desteği
+- Çoklu dil desteği
+- Mobil uygulama
+- Gelişmiş analitik özellikleri
+
+## 9. İLETİŞİM VE DESTEK
+
+Proje ile ilgili sorularınız için:
+- GitHub: [proje_linki]
+- E-posta: [iletisim@email.com]
+- Discord: [discord_linki]

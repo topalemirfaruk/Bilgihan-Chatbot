@@ -1,0 +1,52 @@
+UBUNTU SUNUCUDA PROJE KURULUM ADIMLARI
+===================================
+
+1. Proje Dosyalarını Sunucuya Yükleme
+--------------------------------
+- FileZilla veya WinSCP gibi bir FTP programı kullanarak tüm proje dosyalarını sunucuya yükleyin
+- Önerilen dizin: /var/www/bilgihan_chatbot/
+
+2. Gerekli Paketlerin Kurulumu
+---------------------------
+cd /var/www/bilgihan_chatbot
+sudo apt update
+sudo apt install python3-pip python3-venv -y
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install gunicorn
+
+3. .env Dosyası Kontrolü
+---------------------
+- .env dosyasının sunucuda olduğundan emin olun
+- İçindeki API anahtarlarının doğru olduğunu kontrol edin
+
+4. Veritabanı Oluşturma
+--------------------
+python3 create_db.py
+
+5. Uygulamayı Test Etme
+--------------------
+python3 bilgihan_chatbot.py
+
+Eğer test başarılıysa, Gunicorn ile çalıştırma:
+gunicorn --bind 0.0.0.0:5000 bilgihan_chatbot:app
+
+Not: Eğer port çakışması olursa farklı bir port numarası kullanabilirsiniz (örn: 8000)
+
+HATA DURUMUNDA KONTROL EDİLECEKLER:
+----------------------------------
+1. requirements.txt dosyasının sunucuda olduğundan emin olun
+2. .env dosyasının doğru konumda olduğunu kontrol edin
+3. Proje klasöründeki tüm dosyaların eksiksiz yüklendiğinden emin olun
+4. Python sürümünün uyumlu olduğunu kontrol edin (Python 3.8 veya üstü önerilir)
+5. Gerekli izinlerin verildiğinden emin olun:
+   sudo chown -R www-data:www-data /var/www/bilgihan_chatbot/
+   sudo chmod -R 755 /var/www/bilgihan_chatbot/
+
+ÖNEMLİ NOTLAR:
+-------------
+- Sunucuda port 5000'in açık olduğundan emin olun
+- Güvenlik duvarı ayarlarını kontrol edin
+- Proje dizininde yazma izinlerinin olduğundan emin olun
+- Veritabanı dosyasının yazılabilir olduğunu kontrol edin
